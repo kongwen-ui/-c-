@@ -418,3 +418,223 @@ int main()
 	printf("%d", count);
 	return 0;
 }
+
+
+
+三.实验三：
+1.最小值与位置：
+描述
+从输入的n个整数序列（序列中元素存在相同情况）中找出最小值及其对应的最大下标（下标从0开始）。
+输入
+在第一行中输入一个整数n（1≤n≤100）；在第二行中输入n个整数，整数之间用空格隔开。
+输出
+在一行中输出整数序列的最小值及其对应的最大下标，中间用空格隔开
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[100] = { 0 };
+	int min = 10000;
+	int index = -1;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+		if (arr[i] <= min) //找最小值及其最大下标
+		{
+			min = arr[i];
+			index = i;
+		}
+	}
+	printf("%d %d", min, index);
+	return 0;
+}
+
+2.查找整数：
+描述
+从输入的n个整数序列中查找给定的整数x。如果找到，则输出x的位置（从0开始计数）；如果没有找到，则输出“ - 1”。
+输入
+在第一行中输入一个正整数n（0＜n≤100）和一个整数x；在第二行中输入n个整数（n个整数均不相同），整数之间用空格隔开。
+输出
+在一行中输出一个整数，即x的位置或 - 1。
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0, x = 0;
+	int arr[100] = { 0 };
+	int index = -1;
+	scanf("%d %d", &n, &x);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+		if (arr[i] == x) //查找整数x的位置
+		{
+			index = i;
+		}
+	}
+	printf("%d", index);
+	return 0;
+}
+
+3.绝对偏差：
+描述
+从输入的n个学生成绩中，找出所有成绩中与平均值绝对偏差最大的学生成绩。
+输入
+在一行中输入一个整数n（0＜n≤100）；在第二行中输入n个整数，整数之间用空格隔开。
+输出
+在一行中输出一个整数，即与平均值绝对偏差最大的学生成绩。
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[100] = { 0 };
+	int sum = 0;
+	double avg = 0.0;
+	int maxDevScore = 0;
+	double maxDev = -1.0;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+		sum += arr[i];
+	}
+	avg = (double)sum / n; //计算平均值
+	for (int i = 0; i < n; i++)
+	{
+		double dev = arr[i] > avg ? arr[i] - avg : avg - arr[i]; //计算绝对偏差
+		if (dev > maxDev) //找出最大绝对偏差及对应成绩
+		{
+			maxDev = dev;
+			maxDevScore = arr[i];
+		}
+	}
+	printf("%d", maxDevScore);
+	return 0;
+}
+
+4.排序算法：
+描述
+对输入的n个整数序列按从大到小的顺序输出。
+输入
+在第一行中输入一个整数n（0＜n≤100）；在第二行中输入n个整数，整数之间用空格隔开。
+输出
+在一行中输出从大到小的有序数列，整数之间用空格隔开。
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[100] = { 0 };
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	//冒泡排序
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n - 1 - i; j++)
+		{
+			if (arr[j] < arr[j + 1]) //从大到小排序
+			{
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
+
+5.统计次数：
+描述
+对输入的n个整数序列进行统计，输出出现次数最多的整数及其出现次数。
+输入
+在第一行中输入整数n（10≤n≤100）；在第二行中给出n个整数，整数之间用空格隔开。
+输出
+在一行中输出两个整数，即出现次数最多的整数及其出现次数，整数之间用空格隔开。
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[100] = { 0 };
+	int maxNum = 0;
+	int maxCount = 0;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		int count = 0;
+		for (int j = 0; j < n; j++)
+		{
+			if (arr[i] == arr[j]) //统计arr[i]出现的次数
+			{
+				count++;
+			}
+		}
+		if (count > maxCount) //找出出现次数最多的整数及其次数
+		{
+			maxCount = count;
+			maxNum = arr[i];
+		}
+	}
+	printf("%d %d", maxNum, maxCount);
+	return 0;
+}
+
+6.找中位数：
+描述
+从输入的n个无序的整数序列中求出中位数。所谓中位数是指一组数据按从小到大的顺序依次排列，如果该组数据的个数是奇数，则中位数就是最中间那个数；如果该组数据的个数是偶数，则中位数是最中间两个数据的平均数。
+输入
+在第一行中输入一个整数n（10≤n≤100）；第二行输入n个整数，整数之间用空格隔开。
+输出
+在一行中输出一个浮点数（保留小数点后一位有效数字），即输入整数序列的中位数
+样例输入：
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[100] = { 0 };
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	//冒泡排序
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n - 1 - i; j++)
+		{
+			if (arr[j] > arr[j + 1]) //从小到大排序
+			{
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	double median = 0.0;
+	if (n % 2 == 1) //奇数个数
+	{
+		median = arr[n / 2];
+	}
+	else //偶数个数
+	{
+		median = (arr[n / 2 - 1] + arr[n / 2]) / 2.0;
+	}
+	printf("%.1f", median);
+	return 0;
+}
+
+
