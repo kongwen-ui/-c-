@@ -1473,8 +1473,9 @@ int main()
 
 
 //七.调试：
-#include<stdio.h>
-#include<string.h>
+
+//#include<stdio.h>
+//#include<string.h>
 //1.常用的快捷键：
 //F5
 //启动调试，经常用来直接跳到下一个断点处。
