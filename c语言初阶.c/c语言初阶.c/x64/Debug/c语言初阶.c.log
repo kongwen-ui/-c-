@@ -1,18 +1,2 @@
 ﻿  源.cpp
-C:\c语言初阶\c语言初阶.c\源.cpp(1148,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“size_t”
-      C:\c语言初阶\c语言初阶.c\源.cpp(1148,9):
-      请考虑在格式字符串中使用“%zu”
-  
-C:\c语言初阶\c语言初阶.c\源.cpp(1149,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“size_t”
-      C:\c语言初阶\c语言初阶.c\源.cpp(1149,9):
-      请考虑在格式字符串中使用“%zu”
-  
-C:\c语言初阶\c语言初阶.c\源.cpp(1150,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“size_t”
-      C:\c语言初阶\c语言初阶.c\源.cpp(1150,9):
-      请考虑在格式字符串中使用“%zu”
-  
-C:\c语言初阶\c语言初阶.c\源.cpp(1151,9): warning C4477: “printf”: 格式字符串“%u”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“size_t”
-      C:\c语言初阶\c语言初阶.c\源.cpp(1151,9):
-      请考虑在格式字符串中使用“%zu”
-  
-  c语言初阶.c.vcxproj -> C:\c语言初阶\c语言初阶.c\x64\Debug\c语言初阶.c.exe
+  c语言初阶.c.vcxproj -> C:\github代码\学习库\c语言初阶.c\x64\Debug\c语言初阶.c.exe

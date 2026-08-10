@@ -1124,10 +1124,11 @@ int main()
 //}
  
 //五.指针：
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<time.h>
+
+//#include<stdio.h>
+//#include<string.h>
+//#include<stdlib.h>
+//#include<time.h>
 //1.指针是什么？
 //int main()
 //{
@@ -1472,9 +1473,173 @@ int main()
 
 
 //七.调试：
+#include<stdio.h>
+#include<string.h>
+//1.常用的快捷键：
+//F5
+//启动调试，经常用来直接跳到下一个断点处。
+//F9
+//创建断点和取消断点
+//断点的重要作用，可以在程序的任意位置设置断点。
+//这样就可以使得程序在想要的位置随意停止执行，继而一步步执行下去。
+//F10
+//逐过程，通常用来处理一个过程，一个过程可以是一次函数调用，或者是一条语句。
+//F11
+//逐语句，就是每次都执行一条语句，但是这个快捷键可以使我们的执行逻辑进入函数内
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 0 };
+//	for (i = 0; i < 10; i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
 
+//2.一个很巧的代码：
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	for (i = 0; i <= 12; i++)
+//	{
+//		arr[i] = 0;
+//		printf("hehe\n");   //这是一个死循环,原因是arr[12]的地址和i的地址重合了所以i会重新变成0
+//	}
+//	return 0;
+//}
 
+//3.strcpy函数的实现：
+//版本一：
+//void my_strcpy(char* arr1, char* arr2)
+//{
+//	while (*arr2 != '\0')
+//	{
+//		*arr1 = *arr2;
+//		arr1++;
+//		arr2++;
+//	}
+//	*arr1 = *arr2;
+//}
+//int main()
+//{
+//	char arr1[20] = "xxxxxxxxx";
+//	char arr2[] = "hello bit";
+//	//strcopy在拷贝字符的时候会把源字符串中的\0也拷贝过去
+//	my_strcpy(arr1, arr2);
+//	//strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+//版本二：
+//void my_strcpy(char* arr1, char* arr2)
+//{
+//	while (*arr2 != '\0')
+//	{
+//		*arr1++ = *arr2++;
+//	}
+//	*arr1 = *arr2;
+//}
+//int main()
+//{
+//	char arr1[20] = "xxxxxxxxx";
+//	char arr2[] = "hello bit";
+//	//strcopy在拷贝字符的时候会把源字符串中的\0也拷贝过去
+//	my_strcpy(arr1, arr2);
+//	//strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+//版本三：
+//#include<assert.h>
+//void my_strcpy(char* arr1, const char* arr2)  //加const让这个值不会被修改
+//{
+//	assert(arr2 != NULL);
+//	assert(arr1 != NULL);
+//	while (*arr1++ = *arr2++)
+//	{
+//		;
+//	}
+//	
+//}
+//int main()
+//{
+//	char arr1[20] = "xxxxxxxxx";
+//	char arr2[] = "hello bit";
+//	//strcopy在拷贝字符的时候会把源字符串中的\0也拷贝过去
+//	my_strcpy(arr1, arr2);
+//	//strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+//strcpy的返回值是char*
+//为了实现链式访问
+//strcpy函数返回的是目标空间的起始地址
+//#include<assert.h>
+//char* my_strcpy(char* arr1, const char* arr2)  //加const让这个值不会被修改
+//{
+//	char* ret = arr1;
+//	assert(arr2 != NULL);
+//	assert(arr1 != NULL);
+//	while (*arr1++ = *arr2++)
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[20] = "xxxxxxxxx";
+//	char arr2[] = "hello bit";
+//	//strcopy在拷贝字符的时候会把源字符串中的\0也拷贝过去
+//	
+//	//strcpy(arr1, arr2);
+//	printf("%s\n",my_strcpy(arr1, arr2));//链式访问
+//	return 0;
+//}
 
+//4.const的作用：
+//int main()
+//{
+//	const int num = 10;  //const 让这个值无法被修改
+//	//num = 20;
+//	int* p = &num; //鹏哥说可以用指针来修改但是现版本下已经不行了
+//	*p = 20;
+//	printf("%d\n", num);
+//	return 0;
+//}
+//用const来修饰指针变量：
+//int main()
+//{
+//	int a = 10;
+//	const int* p = &a;  //1.放在左边*P不能通过p来改变了
+//	int* const p = &a;  //2.放在右边p不能改变p=&n;不行
+//
+//	return 0;
+//}
+
+//5.求字符串长度：
+//int my_strlen(char* arr)
+//{
+//	int count = 0;
+//	while (*arr != '\0')
+//	{
+//		count++;
+//		arr++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char arr[] = "hello bit";
+//	int len = my_strlen(arr);
+//	printf("%d\n", len);
+//}
 
 
 
