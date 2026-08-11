@@ -1,5 +1,2 @@
 ﻿  源.cpp
-C:\github代码\学习库\c语言初阶.c\源.cpp(1586,9): error C2440: “初始化”: 无法从“const int *”转换为“int *”
-      C:\github代码\学习库\c语言初阶.c\源.cpp(1586,9):
-      转换丢失限定符
-  
+  c语言初阶.c.vcxproj -> C:\github代码\学习库\c语言初阶.c\Debug\c语言初阶.c.exe

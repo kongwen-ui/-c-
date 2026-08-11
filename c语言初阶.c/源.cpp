@@ -597,7 +597,8 @@ int main()
 //}
 //int main()
 //{
-//	char* p = "abcdef";
+//	
+//	const char* p ="abcdef" ;
 //	int len = Strlen(p);
 //	printf("%d\n", len);
 //	return 0;
@@ -635,7 +636,7 @@ int main()
 
 //(2)练习二：
 //求第n个斐波那契数。
-//#include<stdio.h>
+#include<stdio.h>
 //int count = 0;
 //int fib(int n)      //这道题目用递归的方法来写，会大量消耗资源；可能会栈溢出；效率非常低；
 //{
@@ -648,7 +649,11 @@ int main()
 //}
 //int fib(int n)
 //{
-//	int a=1, b=0, c=1;
+//	if (n <= 2)
+//	{
+//		return 1;
+//	}
+//	int a=1, b=1, c=0;
 //	while (n > 2)
 //	{
 //		n -= 1;
@@ -664,7 +669,7 @@ int main()
 //	scanf("%d", &n);
 //	int ret = fib(n);
 //	printf("%d\n", ret);
-//	printf("%d", count);
+//	//printf("%d", count);
 //	return 0;
 //}
 

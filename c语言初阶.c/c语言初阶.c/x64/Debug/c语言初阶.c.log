@@ -1,2 +1,1 @@
-﻿  源.cpp
-  c语言初阶.c.vcxproj -> C:\github代码\学习库\c语言初阶.c\x64\Debug\c语言初阶.c.exe
+﻿LINK : fatal error LNK1168: 无法打开 C:\github代码\学习库\c语言初阶.c\x64\Debug\c语言初阶.c.exe 进行写入
