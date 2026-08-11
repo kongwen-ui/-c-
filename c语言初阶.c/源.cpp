@@ -636,7 +636,7 @@ int main()
 
 //(2)练习二：
 //求第n个斐波那契数。
-#include<stdio.h>
+//#include<stdio.h>
 //int count = 0;
 //int fib(int n)      //这道题目用递归的方法来写，会大量消耗资源；可能会栈溢出；效率非常低；
 //{

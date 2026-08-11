@@ -4,6 +4,8 @@
 #include<string.h>
 #include<stdlib.h>
 #include<Windows.h>
+//注意，这里所给的标题均是鹏哥C语言B站课程对应的课，并非一定对应标题内容，比如函数练习实则有分支循环的内容
+
 //一.分支和循环练习：
 //1.ASCll码转字符：73,32,99,97,110,32,100,111,32,105,116,33
 //int main()
@@ -245,3 +247,283 @@
 //	}
 //	return 0;
 //}
+
+//二.函数练习：
+//1.写代码将三个整数按从大到小输出：
+// 我自己写的代码：
+//int main()
+//{
+//	int a = 1;
+//	int b = 2;
+//	int c = 3;
+//	scanf("%d %d %d", &a, &b, &c);
+//	if (a > b && a > c)
+//	{
+//		printf("%d ", a);
+//		if (b > c)
+//		{
+//			printf("%d %d", b, c);
+//		}
+//		else if (c > b)
+//		{
+//			printf("%d %d", c,b);
+//		}
+//		
+//	}
+//	else if(b>a&&b>c)
+//	{
+//		printf("%d ", b);
+//		if (a > c)
+//		{
+//			printf("%d %d", a,c);
+//		}
+//		else if (c > a)
+//		{
+//			printf("%d %d", c,a);
+//		}
+//	}
+//	else if (c > a && c > b)
+//	{
+//		printf("%d ", c);
+//		if (a > b)
+//		{
+//			printf("%d %d", a,b);
+//		}
+//		else if (b > a)
+//		{
+//			printf("%d %d", b,a);
+//		}
+//	}
+//	return 0;
+//}
+// 鹏哥写的代码：
+//void swap(int* px, int* py)
+//{
+//	int temp = *px;
+//	*px = *py;
+//	*py = temp;
+//}
+//int main()
+//{
+//	int a = 1;
+//	int b = 0;
+//	int c = 0;
+//	scanf("%d %d %d", &a, &b, &c);
+//	if (a < b)
+//	{
+//		swap(&a, &b);
+//	}
+//	if (a<c)
+//	{
+//		swap(&a, &c);
+//	}
+//	if (b<c)
+//	{
+//		swap(&b, &c);
+//	}
+//	printf("%d %d %d", a, b, c);
+//	return 0;
+//}
+//3.写一个代码打印1-100之间所有三的倍数的数字：
+//int main()
+//{
+//	int i = 0;
+//	//for (i = 3; i < 100; i++)  //版本一
+//	//{
+//	//	if (i % 3 == 0)
+//	//	{
+//	//		printf("%d ", i);
+//	//	}
+//	//}
+//	for (i = 3; i < 100; i+=3) //版本二
+//	{
+//	  printf("%d ", i);
+//	}
+//	return 0;
+//}
+//4.写一个代码求两个数的最大公约数：
+// 自己写的：
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d", &a, &b);
+//	int max_yue = 0;
+//	if (a > b)
+//	{
+//		for (int i = b; i >1 ; i--)
+//		{
+//			if (a % i == 0 && b % i == 0)
+//			{
+//				max_yue = i;
+//				break;
+//			}
+//		}
+//	}
+//	if (a < b)
+//	{
+//		for (int i = a; i >1 ; i--)
+//		{
+//			if (a % i == 0 && b % i == 0)
+//			{
+//				max_yue = i;
+//				break;
+//			}
+//		}
+//	}
+//	printf("%d\n", max_yue);
+//	return 0;
+//}
+//鹏哥法一：
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d", &a, &b);
+//	int min = (a < b) ? a : b;  //逗号表达式求两个变量的最小值
+//	while (min)
+//	{
+//		if (a % min == 0 && b % min == 0)
+//		{
+//			break;
+//		}
+//		min--;
+//	}
+//	printf("%d\n",min );
+//	return 0;
+//}
+//鹏哥法二：辗转相除法
+//24 % 18 --6
+//a<----b<---c
+//18 % 6 ---0
+//a    b就是了     c
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	scanf("%d %d", &a, &b);
+//	while (c = a % b)
+//	{
+//		a= b;
+//		b = c;
+//	}
+//	printf("%d\n", b);
+//	return 0;
+//}
+//5.编写程序求1-100的所有整数中出现几个数字9
+//自己写的,有点蠢了
+//int main()
+//{
+//	int i = 0;
+//	int count = 0;
+//	for (i = 1; i < 100; i++)
+//	{
+//		int c = i;
+//		for (int j=0; j < 2;j++)
+//		{
+//		
+//			if ( c% 10 == 9)
+//			{
+//				count++;
+//			}
+//			c = c / 10;
+//		}
+//	}
+//	printf("%d\n", count);
+//	return 0;
+//}
+//鹏哥版本：
+//int main()
+//{
+//	int i = 0;
+//	int count = 0;
+//	for (i = 1; i < 100; i++)
+//	{
+//		if (i % 10 == 9)
+//			count++;
+//		if (i / 10 == 9)  //不能写成else if 因为if 和else if只有一个能执行
+//			count++;
+//	}
+//	printf("%d\n", count);
+//	return 0;
+//}
+//6.计算1/1-1/2+1/3-1/4+1/5-.......+1/99-1/100
+// 我写的
+//int main()
+//{
+//	int i = 0;
+//	double sum = 0;
+//	for (i = 1; i <= 100; i++)
+//	{
+//		if (i % 2 == 0)
+//		{
+//			sum -= (1.0)/i;
+//		}
+//		else
+//		{
+//			sum += (1.0)/i;
+//		}
+//	}
+//	printf("%lf\n", sum);
+//	return 0;
+//}
+//鹏哥写的，我去此人思路不亚于我
+//int main()
+//{
+//	int i = 0;
+//	double sum = 0;   //要注意这里得是储存浮点数的浮点型
+//	int flag = 1;
+//	for (i = 1; i <= 100; i++)
+//	{
+//		sum = sum + flag * (1.0 / i);
+//		flag = -flag;
+//	}
+//	printf("%lf\n", sum);
+//	return 0;
+//}
+//7.求10个整数中的最大值：
+//我和鹏哥的写法一样，视频里有个天才竟然用二分查找，二分查找只能给有序数组用，既让有序了，最后一个数就是最大值了
+//int main()
+//{
+//	int arr[10] = { 1,3,5,7,8,90,8,3,54,10 };
+//	int i = 0;
+//	int max = arr[0]; //不能初始化为0，因为可能有负数
+//	for (i = 1; i < 10; i++)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//		}
+//	}
+//	printf("%d\n", max);
+//	return 0;
+//}
+//8.在屏幕上打印99乘法口诀表：
+//自己写的
+//1*1  1*2 1*3
+//2*1 2*2 2*3
+//我写的和鹏哥差不多但是加了鹏哥的-2d
+//int main()
+//{
+//	int i = 0;
+//	for (i = 1; i <= 9; i++)
+//	{
+//		int j = 1;
+//		for (j = 1; j <= i; j++)
+//		{
+//			printf("%d * %d = %-2d  ", i, j, i * j);//这里的-2d是左对齐，右对齐是2d
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+//9.
+
+
+
+
+
+
+
+
