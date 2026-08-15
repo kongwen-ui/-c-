@@ -518,10 +518,132 @@
 //	}
 //	return 0;
 //}
-//9.
 
-
-
+//三.数组练习：
+//1.字符串逆序：
+//将字符数组中的字符反向排列，不是倒着打印
+//法一：
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int left = 0;
+//	int right = sz - 2; //注意，这里减2是因为sizeof会把\0算进去
+//	while (left < right)
+//	{
+//		char temp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = temp;
+//		right--;
+//		left++;
+//	}
+//	int i = 0;
+//	//for (i = 0; i < sz - 1; i++)
+//	//{
+//	//	printf("%c ", arr[i]);
+//	//}
+//	printf("%s", arr);
+//	return 0;
+//}
+//法二：递归(一个参数)
+//void reverse(char* arr)
+//{
+//	char temp = *arr;
+//	int sz = strlen(arr);
+//	*arr = *(arr + sz - 1);
+//	*(arr + sz - 1) = '\0';
+//	if (strlen(arr + 1) >= 2)
+//	{
+//		reverse(arr + 1);
+//	}
+//	*(arr + sz - 1) = temp;
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	reverse(arr);
+//	printf("%s\n",arr);
+//	return 0;
+//}
+//法三：递归(两个参数)
+//void reverse(char arr[],int left,int right)
+//{
+//	char temp = arr[left];
+//	arr[left] = arr[right];
+//	arr[right] = temp;
+//	if (left < right)
+//	{
+//		reverse(arr, left + 1, right - 1);
+//	}
+//
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int sz = strlen(arr);
+//	int left = 0;
+//	int right = sz - 1;
+//	reverse(arr,left,right);
+//	printf("%s\n",arr);
+//	return 0;
+//}
+//2.计算一个数的每一位之和（用递归） 
+// 自己写的：
+//int Digitsum(int a)
+//{
+//	int sum = 0;
+//	int c = 0;
+//	if (a > 0)
+//	{
+//		c = a % 10;
+//		sum=sum + c+ Digitsum(a / 10);
+//	}
+//	return sum;
+//}
+//int main()
+//{
+//	int a = 1234;
+//	int sum = 0;
+//	int b=Digitsum(a);
+//	printf("%d\n", b);
+//	return 0;
+//}
+//鹏哥写的：
+//int Digitsum(unsigned int a)
+//{
+//	if (a > 9)
+//		return Digitsum(a / 10) + a % 10;
+//	else
+//		return a;
+//}
+//int main()
+//{
+//	unsigned int a = 1234;
+//	int sum=Digitsum(a);
+//	printf("%u\n", sum);
+//	return 0;
+//}
+//3.使用递归实现n的k次方：
+//n*n^(k-1)
+//double f(int n, int k)
+//{
+//	if (k == 0)
+//		return 1;
+//	if(k>0)
+//	return n * f(n, k - 1);
+//	if (k < 0)
+//		return 1.0 / f(n, -k);
+//	
+//}
+//int main()
+//{
+//	int n = 2;
+//	int k = 6;
+//	scanf("%d %d", &n, &k);
+//	double ret = f(n, k);
+//	printf("%lf\n", ret);
+//	return 0;
+//}
 
 
 
