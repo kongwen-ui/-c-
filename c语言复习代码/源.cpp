@@ -644,8 +644,76 @@
 //	printf("%lf\n", ret);
 //	return 0;
 //}
-
-
-
+//4.两个数组一样大，交换两个数组的内容：
+//int main()
+//{
+//	int arr1[5] = { 1,2,3,4,5 };
+//	int arr2[5] = { 6,7,8,9,10 };
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		int temp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = temp;
+//	}
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr1[i]);
+//	}
+//	printf("\n");
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//	}
+//	return 0;
+//}
+//5.创建一个整形数组，完成对数组的操作：
+//实现init函数，初始化数组的元素全为0
+//实现print函数打印数组的每个元素
+//实现reverse,完成数组元素的逆置
+//void init(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		arr[i] = 0;
+//	}
+//}
+//void print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//}
+//void reverse(int arr[], int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left < right)
+//	{
+//		int temp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = temp;
+//		left++;
+//		right--;
+//	}
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//	
+//	//init(arr, sz);
+//	//print(arr, sz);
+//	reverse(arr, sz);
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
 
 

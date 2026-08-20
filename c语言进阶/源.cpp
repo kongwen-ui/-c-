@@ -1,8 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 //一.数据的存储：
 
-#include<stdio.h>
-#include<string.h>
+//#include<stdio.h>
+//#include<string.h>
+
 //1.数据类型的介绍：
 //(1)整形家族：
 //char     1个字节
@@ -91,28 +92,28 @@
 
 //3.浮点型在内存中的存储
 //(1)一个例子：
-int main()
-{
-	int n = 9; //2^3+2^0
-	//00000000000000000000000000001001
-	float* pFloat = (float*)&n;
-	//变成float就以float的形式来解读
-	//0代表为正
-	//00000000 代表全为0，所以是(-1)^0*0.000000000000001001*2^(-126)
-	//这个值会被编译器认为是0
-	printf("n的值为：%d\n", n);//9
-	printf("*pFloat的值为：%f\n", *pFloat);//0
-	*pFloat = 9.0;
-	//1001.0
-	// 1.0010 * 2^3
-	// 3+127=130  =2^7+2^1
-	// 10000010
-	//01000001000100000000000000000000
-	printf("num的值为：%d\n", n);
-	//如果按照整数来解读，那这个数就会非常大
-	printf("*pFloat的值为：%f\n", *pFloat);//9.000000
-	return 0;
-}
+//int main()
+//{
+//	int n = 9; //2^3+2^0
+//	//00000000000000000000000000001001
+//	float* pFloat = (float*)&n;
+//	//变成float就以float的形式来解读
+//	//0代表为正
+//	//00000000 代表全为0，所以是(-1)^0*0.000000000000001001*2^(-126)
+//	//这个值会被编译器认为是0
+//	printf("n的值为：%d\n", n);//9
+//	printf("*pFloat的值为：%f\n", *pFloat);//0
+//	*pFloat = 9.0;
+//	//1001.0
+//	// 1.0010 * 2^3
+//	// 3+127=130  =2^7+2^1
+//	// 10000010
+//	//01000001000100000000000000000000
+//	printf("num的值为：%d\n", n);
+//	//如果按照整数来解读，那这个数就会非常大
+//	printf("*pFloat的值为：%f\n", *pFloat);//9.000000
+//	return 0;
+//}
 //(2)浮点数的存储规则：
 //根据国际标准IEEE（电气和电子工程协会） 754，任意一个二进制浮点数V可以表示成下面的形式：
 //(-1) ^ S * M * 2 ^ E
@@ -132,18 +133,210 @@ int main()
 //0的很小的数字
 //E全为1：这时，如果有效数字M全为0，表示±无穷大（正负取决于符号位s）；
 
+//二.指针进阶：
 
+#include<stdio.h>
+#include<string.h>
 
+//1.字符指针：
+//int main()
+//{
+//	const char* p = "abcdef"; //这里不是把整个字符串赋给p,而是将首字符地址赋给p
+//	//然后这里提示“abcdef”是常量字符串，所以得用const修饰
+//	printf("%s\n", p);//直接打印出一整个
+//	return 0;
+//}
+//int main()
+//{
+//	const char* p1 = "abcdef";
+//	const char* p2 = "abcdef";
+//	//这两个是相等的，因为p1是"abcdef"首字符的地址，然后在静态区中只要没有进行修改
+//	// 常量字符串的地址是一样的
+//	//C/C++会把常量字符串存储到单独的一个内存区域，当
+//	//几个指针。指向同一个字符串的时候，他们实际会指向同一块内存。
+//	char arr1[] = "abcdef"; 
+//	char arr2[] = "abcdef";
+//	//至于这两个，它们是两个不同的字符数组，首元素地址当然不一样
+//	if (p1 == p2)
+//		printf("p1==p2\n");
+//	else
+//		printf("p1!=p2\n");
+//	if (arr1 == arr2)
+//		printf("arr1==arr2\n");
+//	else
+//		printf("arr1!=arr2\n");
+//	return 0;
+//}
 
+//2.指针数组：
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5 };
+//	int arr2[] = { 2,3,4,5,6 };
+//	int arr3[] = { 3,4,5,6,7 };
+//	int* parr[3] = { arr1,arr2,arr3 };  //每个元素的类型都是int
+//	//指针数组是用来存放指针的数组,parr的类型是int* [3]
+//	int i = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < 5; j++)
+//		{
+//			printf("%d ", *(parr[i] + j));  //相当于是parr[i][j]
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
 
+//3.数组指针：
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int(*p)[10] = &arr; //这个的类型是int(*)[10]
+//	//这个必须是[10]数量必须和初始化的一样，不然会报错
+//	//int* p1 = &arr;  //这样写是不行的
+//	return 0;
+//}
+//错误示范：
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int(*p)[10] = &arr;   //这里的p是整个数组的地址，所以加上一会跳过整个数组
+//	//*p是首元素地址
+//	int i = 0;   
+//	//for (i = 0; i < 10; i++)
+//	//{
+//	//	printf("%d ", *(*p + i));   //p是指向数组的，所以*p实际上相当于数组名，
+//	//	//即数组首元素地址
+//	//}
+//	return 0;
+//}
+//一个正确的应用示范：
+//void print(int(*arr)[4], int r, int c)
+//{
+//	int i = 0;
+//	for (i = 0; i < r; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < c; j++)
+//		{
+//			printf("%d ", *(*(arr+i) + j));
+//			//printf("%d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//int main()
+//{
+//	int arr[3][4] = {1,3,4,5,6,6,7,7,8,5,6,9};
+//	print(arr, 3, 4);
+//	return 0;
+//}
+//辨别下面几个：
+//int arr[5];  //一维数组
+//int* parr1[10]; //指针数组
+//int (*parr2)[10]; //类型为int(*)[10]的数组指针
+//int (*parr3[10])[5];  //parr3是存放数组指针的数组,[5]是指向的数组的元素个数，
+// [10]是指针数组的元素个数
+//int arr[5] = { 1,2,3,4,5 };
+//int (*parr3[10])[5];
+//parr3[0] = &arr;   // 取整个数组地址，赋值给数组指针
+//(*parr3[0])[2] = 100; // 访问 arr[2]
 
+//4.数组参数，指针参数：
+//一维数组传参
+//void test(int arr[])//ok
+//{
+//}
+//void test(int arr[10])//ok
+//{
+//}
+//void test(int* arr)//ok
+//{
+//}
+//void test2(int* arr[20])//指针数组，ok
+//{
+//}
+//void test2(int** arr)//二级指针，ok
+//{
+//}
+//int main()
+//{
+//	int arr1[10] = { 0 };
+//	int*arr2[20] = { 0 };
+//	test(arr1);
+//	test2(arr2);
+//	return 0;
+//}
+//二维数组传参：
+//void test(int arr[3][5])//ok
+//{
+//}
+//void test(int arr[][])//列必须定义
+//{
+//}
+//void test(int arr[][5])//ok
+//{
+//}
+////总结：二维数组传参，函数形参的设计只能省略第一个[]的数字。
+////因为对一个二维数组，可以不知道有多少行，但是必须知道一行多少元素。
+////这样才方便运算。
+//void test(int* arr)//err
+//{
+//}
+//void test(int* arr[5])//指针数组，不行
+//{
+//}
+//void test(int (*arr)[5])//ok
+//{
+//}
+//void test(int** arr)//二级指针,err
+//{
+//}
+//int main()
+//{
+//	int arr[3][5] = { 0 };//这个是int(*)[5]类型的
+//	test(arr);
+//}
+//一级指针传参：
+//void print(int* p, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d\n", *(p + i));
+//	}
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9 };
+//	int* p = arr;
+//	int a = 0;
+//	int* p1 = &a;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//一级指针p，传给函数
+//	print(p, sz); //print(arr,sz)
+//	return 0;
+//}
+//二级指针传参：
+//void test(int** ptr)
+//{
+//	printf("num = %d\n", **ptr);
+//}
+//int main()
+//{
+//	int n = 10;
+//	int* p = &n;
+//	int** pp = &p;
+// int arr[10]={0};
+// test(arr);  //这是可以的
+//	test(pp);
+//	test(&p);
+//	return 0;
+//}
 
-
-
-
-
-
-
+//5.函数指针：
 
 
 
